@@ -4,7 +4,7 @@ import { auth, db, firebaseAuth, ordersDb } from './firebase.js';
   const key = 'hekaya_store_v2';
   const cartKey = 'hekaya_cart_v2';
   const ordersKey = 'hekaya_orders_v2';
-  const adminUid = 'JgSbRHZrbkSIcrlsfStxKvsDsEP2';
+  const adminUid = 'DQwNftPz0PQfaXvNyfFwb08XFjY2';
   const img = (id, width = 850) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`;
   const defaults = {
     name: 'حكاية', announcement: 'توصيل مجاني للطلبات فوق ١٥٠٠ جنيه · اختاري شنطتك المفضلة',
