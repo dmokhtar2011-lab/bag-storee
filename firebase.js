@@ -6,12 +6,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD0E49Dgt0TDabsEUeLD8nJ721fFcp6emg',
+  apiKey: 'AIzaSyD0E49DtgOTDabsEUeLD8nqJ7Z1fCp6emg',
   authDomain: 'hekaya-store-ac7c5.firebaseapp.com',
   projectId: 'hekaya-store-ac7c5',
   storageBucket: 'hekaya-store-ac7c5.firebasestorage.app',
   messagingSenderId: '773590480196',
-  appId: '1:773590480196:web:38d6c5e1d65563d639311',
+  appId: '1:773590480196:web:38d65c1e81d5563d639311',
   measurementId: 'G-BVTB51GQ7Q'
 };
 
