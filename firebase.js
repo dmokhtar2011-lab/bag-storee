@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
 import {
-  addDoc, collection, deleteDoc, doc, getDocs, getFirestore, orderBy,
+  addDoc, collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, orderBy,
   query, serverTimestamp, updateDoc
 } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 
@@ -19,4 +19,4 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const firebaseAuth = { onAuthStateChanged, signInWithEmailAndPassword, signOut };
-export const ordersDb = { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp, updateDoc };
+export const ordersDb = { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, updateDoc };
