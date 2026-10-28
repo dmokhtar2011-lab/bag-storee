@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isStoreOwner() {
+      return request.auth != null &&
+        request.auth.uid == 'JgSbRHZrbkSIcrlsfStxKvsDsEP2';
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasOnly([
+          'name', 'phone', 'address', 'notes', 'items', 'total', 'status', 'createdAt'
+        ]) &&
+        data.keys().hasAll([
+          'name', 'phone', 'address', 'notes', 'items', 'total', 'status', 'createdAt'
+        ]) &&
+        data.name is string && data.name.size() >= 2 && data.name.size() <= 100 &&
+        data.phone is string && data.phone.size() >= 7 && data.phone.size() <= 25 &&
+        data.address is string && data.address.size() >= 5 && data.address.size() <= 300 &&
+        data.notes is string && data.notes.size() <= 500 &&
+        data.items is list && data.items.size() >= 1 && data.items.size() <= 20 &&
+        data.total is number && data.total >= 0 && data.total <= 1000000 &&
+        data.status in ['جديد', 'قيد التجهيز', 'تم التسليم', 'ملغي'] &&
+        data.createdAt is timestamp;
+    }
+
+    match /orders/{orderId} {
+      // Customers may submit validated orders. Customer details are never publicly readable.
+      allow create: if isValidOrder(request.resource.data) &&
+        request.resource.data.status == 'جديد' &&
+        request.resource.data.createdAt == request.time;
+      allow read: if isStoreOwner();
+      allow update: if isStoreOwner() &&
+        isValidOrder(request.resource.data) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']);
+      allow delete: if isStoreOwner();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
